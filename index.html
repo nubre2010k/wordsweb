@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lug'at Quiz (JSON) — NK PlatiCode</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #timer { margin-top:10px; font-weight:bold; color:darkred; }
+    #wrongList { margin-top:15px; border:1px solid #ccc; padding:10px; display:none }
+    #wrongList h3 { margin:0 0 8px 0; }
+    .wrong-item { color:red; margin:4px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Lug'at Quiz (JSON)</h1>
+        <p class="lead">JSON fayldagi lug'atlardan test oluvchi sahifa.</p>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="controls">
+        <label class="small">
+          Faylni yuklash (local):
+          <input id="fileInput" type="file" accept=".json" />
+        </label>
+        <button id="loadBtn">words.json dan yuklash</button>
+
+        <select id="githubSelect">
+          <option value="">-- Time box tanlang --</option>
+          <option value="halfday">12 soat</option>
+          <option value="day">1 kun</option>
+          <option value="3day">3 kun</option>
+          <option value="week">1 hafta</option>
+          <option value="2week">2 hafta</option>
+          <option value="month">1 oy</option>
+          <option value="2month">2 oy</option>
+        </select>
+        <button id="githubBtn">Yuklash</button>
+
+        <select id="modeSelect">
+          <option value="word->mean">So'z → Ma'no</option>
+          <option value="mean->word">Ma'no → So'z</option>
+        </select>
+        <button id="shuffleBtn">Aralashtirish</button>
+        <button id="startBtn" class="primary">Boshlash</button>
+      </div>
+
+      <div class="quiz">
+        <div class="panel" id="leftPanel">
+          <div id="statusTop" class="row">
+            <div class="small">Umumiy: <span id="total">0</span></div>
+            <ul class="stats" style="margin-left:auto">
+              <li>To'g'ri: <span id="correct">0</span></li>
+              <li>Noto'g'ri: <span id="wrong">0</span></li>
+              <li>Qolgan: <span id="remaining">0</span></li>
+            </ul>
+          </div>
+
+          <div id="timer">⏳ 0 soniya</div> <!-- TIMER -->
+
+          <div style="margin-top:16px">
+            <div class="word" id="currentWord">—</div>
+            <div class="meta" id="currentMeta">So'zni yuklang yoki serverga joylang (words.json)</div>
+
+            <div class="answer">
+              <input id="answerInput" type="text" placeholder="Javobni yozing va Enter ni bosing" />
+              <div id="resultBox"></div>
+            </div>
+
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <button id="checkBtn">Tekshirish</button>
+              <button id="skipBtn">O'tkazib yuborish</button>
+              <button id="showBtn">To'liq javobni ko'rsatish</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel" id="rightPanel">
+          <h3 style="margin-top:0">So'zlar ro'yxati (JSON)</h3>
+          <textarea id="wordList" style="width:100%;height:300px;margin-top:8px;padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:inherit"></textarea>
+        </aside>
+      </div>
+
+      <div id="wrongList">
+        <h3>Noto‘g‘ri javoblar:</h3>
+        <div id="wrongItems"></div>
+      </div>
+
+      
+      <div id="correctAnswersBox" style="display:none; margin-top:20px;">
+        <h3>✅ To‘g‘ri javoblar</h3>
+        <textarea id="correctAnswersText" readonly style="width:100%; height:150px;"></textarea>
+        <button id="copyCorrectBtnNew">Copy</button>
+      </div>
+
+      <div id="wrongAnswersBox" style="display:none; margin-top:20px;">
+        <h3>❌ Noto‘g‘ri javoblar</h3>
+        <textarea id="wrongAnswersText" readonly style="width:100%; height:150px;"></textarea>
+        <button id="copyWrongBtnNew">Copy</button>
+      </div>
+
+
+
+      <footer>
+        <div class="small">Ishlatish: index.html + words.json papkada bo‘lsin yoki GitHub’dan yuklang.</div>
+      </footer>
+    </div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
