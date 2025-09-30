@@ -52,7 +52,7 @@ function loadFromJsonText(txt){
   if(Array.isArray(parsed)){
     entries = parsed.map(p => ({
       word: String(p.word || '').trim(),
-      mean: Array.isArray(p.mean) ? p.meaning.join(', ') : String(p.meaning || '').trim()
+      mean: Array.isArray(p.mean) ? p.mean.join(', ') : String(p.mean || '').trim()
     })).filter(e => e.word);
   } else if(typeof parsed === 'object' && parsed !== null){
     entries = Object.keys(parsed).map(k => ({
@@ -337,3 +337,4 @@ document.getElementById('copyWrongBtnNew').addEventListener('click', () => {
     alert('Nusxa olishda xato yuz berdi.');
   });
 });
+
